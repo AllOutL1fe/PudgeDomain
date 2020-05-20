@@ -1,0 +1,36 @@
+
+
+
+<div class="panel">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Предмет</th>
+        <th>Цена</th>
+        <th>Эффект</th>
+        <th></th>
+        <th>Уже куплено</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{item.purchase}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.effect}}</td>
+        <td><button class="btn btn-default" (click)="buyItem(item.purchase)">Купить</button></td>
+        <td>{{item.done-1}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="user">
+  <div class="title"><b>{{player.nickname}}</b></div>
+  <div class="player-image" id="avatar"><a target="_blank" href="/user/76561198319314903"><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/42/428d5a16d64f268944a71d81cfbb8609382d901f_full.jpg" alt="" width="75px"></a></div>
+  <div class="exp">{{player.experience}}</div>
+  <div class="lvl">{{player.lvl}}</div>
+  <div class="gold">{{player.gold}}</div>
+
+  <div class="imageEnemy"><img src="https://sun1-85.userapi.com/G806KLZPOKSxOmGAk4HU976sRMBfsNTeAG06Nw/Rzy9rtQQ5X0.jpg" alt="1" (click)="Clicking()"></div>
+
+</div>
+
