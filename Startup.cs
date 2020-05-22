@@ -28,10 +28,13 @@ namespace WebApplication1
         {
 
             services.AddDbContext<AppDBContext>(optionns => optionns.UseSqlServer(Configuration.GetConnectionString("AppDBContextConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<AppDBContext>();
+            services.AddIdentity<AppUser, IdentityRole>()
+.AddEntityFrameworkStores<AppDBContext>();
 
+        
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<AppDBContext>();
+            services.AddRazorPages();
 
             services.Configure<IdentityOptions>(options => //конфигурация требуемого при регистрации пароля
             {
@@ -44,13 +47,23 @@ namespace WebApplication1
             });
 
             services.AddControllersWithViews();
-            services.AddRazorPages();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
-           
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+                
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Error");
+            //    app.UseHsts();
+            //}
+
             app.UseHttpsRedirection();
           
             app.UseRouting();
@@ -65,6 +78,16 @@ namespace WebApplication1
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
+
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //    }
+            //});
 
         }
     }
